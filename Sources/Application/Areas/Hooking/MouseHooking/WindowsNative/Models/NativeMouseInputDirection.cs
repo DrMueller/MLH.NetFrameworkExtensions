@@ -1,6 +1,6 @@
 ﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Models
 {
-    public enum NativeMouseInputDirection
+    internal enum NativeMouseInputDirection
     {
         MouseDown,
         MouseUp

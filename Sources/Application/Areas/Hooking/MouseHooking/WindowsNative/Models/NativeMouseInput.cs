@@ -1,6 +1,6 @@
 ﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Models
 {
-    public class NativeMouseInput
+    internal class NativeMouseInput
     {
         public NativeMouseInputDirection Direction { get; }
         public NativeMouseInputKey Key { get; }
