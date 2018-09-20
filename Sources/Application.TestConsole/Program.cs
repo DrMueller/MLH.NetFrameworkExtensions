@@ -15,7 +15,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole
     public static class Program
     {
         [STAThread]
-        public static void Main(string[] args)
+        public static void Main()
         {
             ContainerInitializationService.CreateInitializedContainer(new AssemblyParameters(typeof(Program).Assembly, "Mmu.Mlh"));
             var keyboardHookService = ProvisioningServiceSingleton.Instance.GetService<IKeyboadHookService>();

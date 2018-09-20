@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Models;
 using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Enums;
 using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Services.Implementation
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StructureMap")]
+    [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StructureMap")]
     internal class NativeMouseHookService : INativeMouseHookService
     {
         private const int WmLbuttondown = 0x0201;

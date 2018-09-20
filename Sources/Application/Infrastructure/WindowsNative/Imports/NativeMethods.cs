@@ -5,7 +5,7 @@ using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Delegates;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Imports
 {
-    internal static class DllImports
+    internal static class NativeMethods
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         internal static extern IntPtr CallNextHookEx(IntPtr hookId, int code, IntPtr wordParam, IntPtr longParam);

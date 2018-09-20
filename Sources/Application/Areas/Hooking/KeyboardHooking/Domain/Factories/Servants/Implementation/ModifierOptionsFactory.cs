@@ -10,9 +10,9 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Fa
     {
         public ModifierOptions Create()
         {
-            var isShiftPressed = CheckIfActive(DllImports.GetKeyState(Keys.ShiftKey));
-            var isCtrlpressed = CheckIfActive(DllImports.GetKeyState(Keys.ControlKey));
-            var isAltpressed = CheckIfActive(DllImports.GetKeyState(Keys.Menu));
+            var isShiftPressed = CheckIfActive(NativeMethods.GetKeyState(Keys.ShiftKey));
+            var isCtrlpressed = CheckIfActive(NativeMethods.GetKeyState(Keys.ControlKey));
+            var isAltpressed = CheckIfActive(NativeMethods.GetKeyState(Keys.Menu));
 
             return new ModifierOptions(
                 isCtrlpressed,

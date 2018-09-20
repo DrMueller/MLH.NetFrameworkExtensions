@@ -28,7 +28,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.I
         public void Hook(HookType hookType, HookReceived hookReceivedCallback)
         {
             _hookReceivedCallback = hookReceivedCallback;
-            _hookId = new MySafeHandle(DllImports.SetWindowsHookEx((int)hookType, _hookedProc, IntPtr.Zero, 0));
+            _hookId = new MySafeHandle(NativeMethods.SetWindowsHookEx((int)hookType, _hookedProc, IntPtr.Zero, 0));
         }
 
         private void Dispose(bool isDisposing)
@@ -46,14 +46,14 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.I
         {
             if (code < 0)
             {
-                return DllImports.CallNextHookEx(_hookId.DangerousGetHandle(), code, wordParam, longParam);
+                return NativeMethods.CallNextHookEx(_hookId.DangerousGetHandle(), code, wordParam, longParam);
             }
 
             var wordParamInt32 = wordParam.ToInt32();
             var longParamInt32 = Marshal.ReadInt32(longParam);
             _hookReceivedCallback(wordParamInt32, longParamInt32);
 
-            return DllImports.CallNextHookEx(_hookId.DangerousGetHandle(), code, wordParam, longParam);
+            return NativeMethods.CallNextHookEx(_hookId.DangerousGetHandle(), code, wordParam, longParam);
         }
 
         ~HookService()

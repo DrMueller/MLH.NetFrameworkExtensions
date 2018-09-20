@@ -11,9 +11,9 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Fa
     {
         public LockOptions Create()
         {
-            var isCapsLockActive = Convert.ToBoolean(DllImports.GetKeyState(Keys.CapsLock)) & true;
-            var isNumLockActive = Convert.ToBoolean(DllImports.GetKeyState(Keys.NumLock)) & true;
-            var isScrolLLockActivate = Convert.ToBoolean(DllImports.GetKeyState(Keys.Scroll)) & true;
+            var isCapsLockActive = Convert.ToBoolean(NativeMethods.GetKeyState(Keys.CapsLock)) & true;
+            var isNumLockActive = Convert.ToBoolean(NativeMethods.GetKeyState(Keys.NumLock)) & true;
+            var isScrolLLockActivate = Convert.ToBoolean(NativeMethods.GetKeyState(Keys.Scroll)) & true;
 
             return new LockOptions(
                 isScrolLLockActivate,

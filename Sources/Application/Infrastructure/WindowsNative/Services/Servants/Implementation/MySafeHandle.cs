@@ -15,7 +15,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.S
         protected override bool ReleaseHandle()
         {
             handle = IntPtr.Zero;
-           return true;
+            return true;
         }
     }
 }

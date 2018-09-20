@@ -89,7 +89,7 @@
     <Compile Include="Infrastructure\WindowsNative\Enums\HookType.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\WindowsNative\Services\INativeKeyboardHookService.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\WindowsNative\Services\Implementation\NativeKeyboardHookService.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Imports\DllImports.cs" />
+    <Compile Include="Infrastructure\WindowsNative\Imports\NativeMethods.cs" />
     <Compile Include="Infrastructure\WindowsNative\Delegates\HookProc.cs" />
     <Compile Include="Infrastructure\WindowsNative\Services\Servants\Implementation\InvokeActionServant.cs" />
     <Compile Include="Infrastructure\WindowsNative\Services\IHookService.cs" />
