@@ -94,6 +94,7 @@
     <Compile Include="Infrastructure\WindowsNative\Services\Servants\Implementation\InvokeActionServant.cs" />
     <Compile Include="Infrastructure\WindowsNative\Services\IHookService.cs" />
     <Compile Include="Infrastructure\WindowsNative\Services\Implementation\HookService.cs" />
+    <Compile Include="Infrastructure\WindowsNative\Services\Servants\Implementation\MySafeHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

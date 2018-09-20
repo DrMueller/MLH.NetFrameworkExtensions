@@ -21,6 +21,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Imports
             uint threadId);
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool UnhookWindowsHookEx(IntPtr instance);
     }
 }

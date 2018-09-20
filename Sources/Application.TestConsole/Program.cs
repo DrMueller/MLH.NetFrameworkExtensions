@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
@@ -13,6 +14,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole
 {
     public static class Program
     {
+        [STAThread]
         public static void Main(string[] args)
         {
             ContainerInitializationService.CreateInitializedContainer(new AssemblyParameters(typeof(Program).Assembly, "Mmu.Mlh"));
