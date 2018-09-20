@@ -37,8 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mmu.Mlh.LanguageExtensions, Version=1.2.16.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Mmu.Mlh.LanguageExtensions.1.2.16\lib\netstandard2.0\Mmu.Mlh.LanguageExtensions.dll</HintPath>
+    <Reference Include="Mmu.Mlh.LanguageExtensions, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Mmu.Mlh.LanguageExtensions.2.0.1\lib\netstandard2.0\Mmu.Mlh.LanguageExtensions.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StructureMap.4.6.1\lib\net45\StructureMap.dll</HintPath>
