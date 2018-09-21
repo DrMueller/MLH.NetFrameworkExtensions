@@ -1,6 +1,8 @@
-﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models
+﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
+
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models
 {
-    public class MouseInput
+    public class MouseInput : IInput
     {
         public MouseInputDirection Direction { get; }
         public MouseInputKey InputKey { get; }

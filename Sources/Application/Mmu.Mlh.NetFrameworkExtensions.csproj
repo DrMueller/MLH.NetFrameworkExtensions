@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Hooking\Common\Models\IInput.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\Implementation\KeyboardInputFactory.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\IKeyboardInputFactory.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\Servants\IKeyboardInputKeyMappingServant.cs" />

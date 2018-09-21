@@ -1,6 +1,8 @@
-﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models
+﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
+
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models
 {
-    public class KeyboardInput
+    public class KeyboardInput : IInput
     {
         public KeyboardInputDirection Direction { get; }
         public KeyboardInputKey InputKey { get; }
