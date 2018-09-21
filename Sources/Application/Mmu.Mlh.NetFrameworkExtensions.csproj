@@ -67,8 +67,8 @@
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\KeyboardInputKey.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\LockOptions.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\ModifierOptions.cs" />
-    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Services\IKeyboadHookService.cs" />
-    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Services\Implementation\KeyboadHookService.cs" />
+    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Services\IKeyboardHookService.cs" />
+    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Services\Implementation\KeyboardHookService.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\WindowsNative\Models\NativeKeyboardInput.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\WindowsNative\Models\NativeKeyboardInputDirection.cs" />
     <Compile Include="Areas\Hooking\MouseHooking\Domain\Factories\IMouseInputFactory.cs" />

@@ -31,7 +31,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
 
             // Hooking - Keyboard
             For<INativeKeyboardHookService>().Use<NativeKeyboardHookService>().Transient();
-            For<IKeyboadHookService>().Use<KeyboadHookService>().Transient();
+            For<IKeyboardHookService>().Use<KeyboardHookService>().Transient();
             For<IKeyboardInputFactory>().Use<KeyboardInputFactory>().Singleton();
             For<IKeyboardInputKeyMappingServant>().Use<KeyboardInputKeyMappingServant>();
             For<IModifierOptionsFactory>().Use<ModifierOptionsFactory>();

@@ -8,12 +8,12 @@ using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNative
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Services.Implementation
 {
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StrcutureMap")]
-    internal class KeyboadHookService : IKeyboadHookService
+    internal class KeyboardHookService : IKeyboardHookService
     {
         private readonly IKeyboardInputFactory _inputFactory;
         private Action<KeyboardInput> _onKeyboardInput;
 
-        public KeyboadHookService(
+        public KeyboardHookService(
             INativeKeyboardHookService nativeKeyboardHookService,
             IKeyboardInputFactory inputFactory)
         {

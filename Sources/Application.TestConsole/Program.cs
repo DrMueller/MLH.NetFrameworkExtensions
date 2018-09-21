@@ -18,7 +18,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole
         public static void Main()
         {
             ContainerInitializationService.CreateInitializedContainer(new AssemblyParameters(typeof(Program).Assembly, "Mmu.Mlh"));
-            var keyboardHookService = ProvisioningServiceSingleton.Instance.GetService<IKeyboadHookService>();
+            var keyboardHookService = ProvisioningServiceSingleton.Instance.GetService<IKeyboardHookService>();
             var mouseHookService = ProvisioningServiceSingleton.Instance.GetService<IMouseHookService>();
 
             keyboardHookService.HookKeyboard(OnKeyboardInput);
