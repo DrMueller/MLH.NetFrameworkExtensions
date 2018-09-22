@@ -98,7 +98,9 @@
     <Compile Include="Infrastructure\WindowsNative\Services\Servants\Implementation\MySafeHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Infrastructure\Assets\M.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
