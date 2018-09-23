@@ -12,26 +12,26 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
     public class KeyboardInputFactoryUnitTests
     {
         private Mock<IKeyboardInputKeyMappingServant> _inputKeyMappingServantMock;
-        private Mock<ILockOptionsFactory> _lockOptionsFactoryMock;
-        private Mock<IModifierOptionsFactory> _modifierOptionsFactoryMock;
+        private Mock<IKeyboardInputLocksFactory> _lockOptionsFactoryMock;
+        private Mock<IKeyboardInputModifiersFactory> _modifierOptionsFactoryMock;
         private KeyboardInputFactory _sut;
 
         [Test]
         public void Mapping_CallsInputKeyMappingServantOnceWithPassedNativeKey()
         {
             // Arrange
-            const Keys nativeKey = Keys.A;
-            var nativeKeyboardInput = new NativeKeyboardInput(nativeKey, NativeKeyboardInputDirection.KeyDown);
+            const Keys NativeKey = Keys.A;
+            var nativeKeyboardInput = new NativeKeyboardInput(NativeKey, NativeKeyboardInputDirection.KeyDown);
 
             _inputKeyMappingServantMock.Setup(f => f.MapFromNativeKey(Keys.A)).Returns(KeyboardInputKey.A);
-            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new LockOptions(true, true, true));
-            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new ModifierOptions(true, true, true));
+            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputLocks(true, true, true));
+            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, true));
 
             // Act
             _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
 
             // Assert
-            _inputKeyMappingServantMock.Verify(f => f.MapFromNativeKey(nativeKey), Times.Once);
+            _inputKeyMappingServantMock.Verify(f => f.MapFromNativeKey(NativeKey), Times.Once);
         }
 
         [Test]
@@ -42,8 +42,8 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             var nativeKeyboardInput = new NativeKeyboardInput(NativeKey, NativeKeyboardInputDirection.KeyDown);
 
             _inputKeyMappingServantMock.Setup(f => f.MapFromNativeKey(Keys.A)).Returns(KeyboardInputKey.A);
-            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new LockOptions(true, true, true));
-            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new ModifierOptions(true, true, true));
+            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputLocks(true, true, true));
+            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, true));
 
             // Act
             _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
@@ -56,12 +56,12 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
         public void Mapping_CallsModifierOptionsFactoryOnce()
         {
             // Arrange
-            const Keys nativeKey = Keys.A;
-            var nativeKeyboardInput = new NativeKeyboardInput(nativeKey, NativeKeyboardInputDirection.KeyDown);
+            const Keys NativeKey = Keys.A;
+            var nativeKeyboardInput = new NativeKeyboardInput(NativeKey, NativeKeyboardInputDirection.KeyDown);
 
             _inputKeyMappingServantMock.Setup(f => f.MapFromNativeKey(Keys.A)).Returns(KeyboardInputKey.A);
-            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new LockOptions(true, true, true));
-            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new ModifierOptions(true, true, true));
+            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputLocks(true, true, true));
+            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, true));
 
             // Act
             _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
@@ -78,8 +78,8 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             var nativeKeyboardInput = new NativeKeyboardInput(NativeKey, NativeKeyboardInputDirection.KeyDown);
 
             _inputKeyMappingServantMock.Setup(f => f.MapFromNativeKey(Keys.A)).Returns(KeyboardInputKey.A);
-            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new LockOptions(true, false, true));
-            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new ModifierOptions(true, true, false));
+            _lockOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputLocks(true, false, true));
+            _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, false));
 
             // Act
             var actualInput = _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
@@ -87,20 +87,20 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             // Assert
             Assert.AreEqual(KeyboardInputDirection.KeyDown, actualInput.Direction);
             Assert.AreEqual(KeyboardInputKey.A, actualInput.InputKey);
-            Assert.AreEqual(true, actualInput.LockOptions.IsCapsLockActive);
-            Assert.AreEqual(false, actualInput.LockOptions.IsNumLockActive);
-            Assert.AreEqual(true, actualInput.LockOptions.IsScrollLockActive);
-            Assert.AreEqual(true, actualInput.ModifierOptions.IsAltPressed);
-            Assert.AreEqual(true, actualInput.ModifierOptions.IsCtrlPressed);
-            Assert.AreEqual(false, actualInput.ModifierOptions.IsShiftPressed);
+            Assert.AreEqual(true, actualInput.InputLocks.IsCapsLockActive);
+            Assert.AreEqual(false, actualInput.InputLocks.IsNumLockActive);
+            Assert.AreEqual(true, actualInput.InputLocks.IsScrollLockActive);
+            Assert.AreEqual(true, actualInput.InputModifiers.IsAltPressed);
+            Assert.AreEqual(true, actualInput.InputModifiers.IsCtrlPressed);
+            Assert.AreEqual(false, actualInput.InputModifiers.IsShiftPressed);
         }
 
         [SetUp]
         public void SetUp()
         {
             _inputKeyMappingServantMock = new Mock<IKeyboardInputKeyMappingServant>();
-            _lockOptionsFactoryMock = new Mock<ILockOptionsFactory>();
-            _modifierOptionsFactoryMock = new Mock<IModifierOptionsFactory>();
+            _lockOptionsFactoryMock = new Mock<IKeyboardInputLocksFactory>();
+            _modifierOptionsFactoryMock = new Mock<IKeyboardInputModifiersFactory>();
             _sut = new KeyboardInputFactory(
                 _inputKeyMappingServantMock.Object,
                 _lockOptionsFactoryMock.Object,

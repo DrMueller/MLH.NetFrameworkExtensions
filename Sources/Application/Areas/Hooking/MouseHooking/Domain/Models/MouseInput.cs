@@ -1,4 +1,5 @@
-﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
+﻿using System.Text;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models
 {
@@ -11,6 +12,16 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Model
         {
             InputKey = inputKey;
             Direction = direction;
+        }
+
+        public string CreateOverview()
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"Key: {InputKey}");
+            sb.AppendLine($"Direction: {Direction}");
+
+            return sb.ToString();
         }
     }
 }

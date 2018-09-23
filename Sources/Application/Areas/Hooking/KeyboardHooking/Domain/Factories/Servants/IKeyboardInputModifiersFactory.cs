@@ -2,8 +2,8 @@
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants
 {
-    internal interface IModifierOptionsFactory
+    internal interface IKeyboardInputModifiersFactory
     {
-        ModifierOptions Create();
+        KeyboardInputModifiers Create();
     }
 }

@@ -7,15 +7,15 @@ using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Imports;
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants.Implementation
 {
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StrcutureMap")]
-    internal class LockOptionsFactory : ILockOptionsFactory
+    internal class KeyboardInputLocksFactory : IKeyboardInputLocksFactory
     {
-        public LockOptions Create()
+        public KeyboardInputLocks Create()
         {
             var isCapsLockActive = Convert.ToBoolean(NativeMethods.GetKeyState(Keys.CapsLock)) & true;
             var isNumLockActive = Convert.ToBoolean(NativeMethods.GetKeyState(Keys.NumLock)) & true;
             var isScrolLLockActivate = Convert.ToBoolean(NativeMethods.GetKeyState(Keys.Scroll)) & true;
 
-            return new LockOptions(
+            return new KeyboardInputLocks(
                 isScrolLLockActivate,
                 isNumLockActive,
                 isCapsLockActive);

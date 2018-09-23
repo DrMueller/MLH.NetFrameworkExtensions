@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Services;
@@ -29,27 +28,12 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole
 
         private static void OnKeyboardInput(KeyboardInput keyboardInput)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine($"Key: {keyboardInput.InputKey}");
-            sb.AppendLine($"Direction: {keyboardInput.Direction}");
-            sb.AppendLine($"Modifier Shift: {keyboardInput.ModifierOptions.IsShiftPressed}");
-            sb.AppendLine($"Modifier Ctrl: {keyboardInput.ModifierOptions.IsCtrlPressed}");
-            sb.AppendLine($"Modifier Alt: {keyboardInput.ModifierOptions.IsAltPressed}");
-            sb.AppendLine($"Lock Caps: {keyboardInput.LockOptions.IsCapsLockActive}");
-            sb.AppendLine($"Lock Num: {keyboardInput.LockOptions.IsNumLockActive}");
-            sb.AppendLine($"Lock Scroll: {keyboardInput.LockOptions.IsScrollLockActive}");
-
-            Debug.WriteLine(sb.ToString());
+            Debug.WriteLine(keyboardInput.CreateOverview());
         }
 
         private static void OnMouseInput(MouseInput mouseInput)
         {
-            var sb = new StringBuilder();
-
-            sb.AppendLine($"Key: {mouseInput.InputKey}");
-            sb.AppendLine($"Direction: {mouseInput.Direction}");
-
-            Debug.WriteLine(sb.ToString());
+            Debug.WriteLine(mouseInput.CreateOverview());
         }
     }
 }

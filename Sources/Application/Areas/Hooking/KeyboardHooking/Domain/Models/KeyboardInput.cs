@@ -1,4 +1,5 @@
-﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
+﻿using System.Text;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models
 {
@@ -6,19 +7,34 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Mo
     {
         public KeyboardInputDirection Direction { get; }
         public KeyboardInputKey InputKey { get; }
-        public LockOptions LockOptions { get; }
-        public ModifierOptions ModifierOptions { get; }
+        public KeyboardInputLocks InputLocks { get; }
+        public KeyboardInputModifiers InputModifiers { get; }
 
         public KeyboardInput(
-            KeyboardInputDirection direction,
             KeyboardInputKey inputKey,
-            LockOptions lockOptions,
-            ModifierOptions modifierOptions)
+            KeyboardInputDirection direction,
+            KeyboardInputLocks inputLocks,
+            KeyboardInputModifiers inputModifiers)
         {
-            Direction = direction;
             InputKey = inputKey;
-            LockOptions = lockOptions;
-            ModifierOptions = modifierOptions;
+            Direction = direction;
+            InputLocks = inputLocks;
+            InputModifiers = inputModifiers;
+        }
+
+        public string CreateOverview()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"Key: {InputKey}");
+            sb.AppendLine($"Direction: {Direction}");
+            sb.AppendLine($"Modifier Shift: {InputModifiers.IsShiftPressed}");
+            sb.AppendLine($"Modifier Ctrl: {InputModifiers.IsCtrlPressed}");
+            sb.AppendLine($"Modifier Alt: {InputModifiers.IsAltPressed}");
+            sb.AppendLine($"Lock Caps: {InputLocks.IsCapsLockActive}");
+            sb.AppendLine($"Lock Num: {InputLocks.IsNumLockActive}");
+            sb.AppendLine($"Lock Scroll: {InputLocks.IsScrollLockActive}");
+
+            return sb.ToString();
         }
     }
 }

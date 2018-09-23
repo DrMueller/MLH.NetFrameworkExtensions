@@ -9,13 +9,13 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Fa
     internal class KeyboardInputFactory : IKeyboardInputFactory
     {
         private readonly IKeyboardInputKeyMappingServant _inputKeyMappingServant;
-        private readonly ILockOptionsFactory _lockOptionsFactory;
-        private readonly IModifierOptionsFactory _modiferOptionsFactory;
+        private readonly IKeyboardInputLocksFactory _lockOptionsFactory;
+        private readonly IKeyboardInputModifiersFactory _modiferOptionsFactory;
 
         public KeyboardInputFactory(
             IKeyboardInputKeyMappingServant inputKeyMappingServant,
-            ILockOptionsFactory lockOptionsFactory,
-            IModifierOptionsFactory modiferOptionsFactory)
+            IKeyboardInputLocksFactory lockOptionsFactory,
+            IKeyboardInputModifiersFactory modiferOptionsFactory)
         {
             _inputKeyMappingServant = inputKeyMappingServant;
             _lockOptionsFactory = lockOptionsFactory;
@@ -25,8 +25,8 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Fa
         public KeyboardInput CreateFromNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
         {
             return new KeyboardInput(
-                MapDirection(nativeKeyboardInput.Direction),
                 _inputKeyMappingServant.MapFromNativeKey(nativeKeyboardInput.Key),
+                MapDirection(nativeKeyboardInput.Direction),
                 _lockOptionsFactory.Create(),
                 _modiferOptionsFactory.Create());
         }

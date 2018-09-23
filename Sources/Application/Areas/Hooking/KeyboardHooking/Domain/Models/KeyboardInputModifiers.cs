@@ -1,12 +1,12 @@
 ﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models
 {
-    public class ModifierOptions
+    public class KeyboardInputModifiers
     {
         public bool IsAltPressed { get; }
         public bool IsCtrlPressed { get; }
         public bool IsShiftPressed { get; }
 
-        public ModifierOptions(
+        public KeyboardInputModifiers(
             bool isCtrlPressed,
             bool isAltPressed,
             bool isShiftPressed)

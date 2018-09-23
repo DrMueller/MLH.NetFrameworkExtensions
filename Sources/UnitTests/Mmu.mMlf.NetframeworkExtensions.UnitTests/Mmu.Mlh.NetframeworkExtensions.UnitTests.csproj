@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestingAreas\Areas\Hooking\KeyboardHooking\Domain\Factories\KeyboardInputFactoryUnitTests.cs" />
+    <Compile Include="TestingAreas\Areas\Hooking\KeyboardHooking\Domain\Models\KeyboardInputUnitTests.cs" />
+    <Compile Include="TestingAreas\Areas\Hooking\MouseHooking\Domain\Models\MouseInputUnitTests.cs" />
     <Compile Include="TestingAreas\Areas\Hooking\KeyboardHooking\Domain\Services\KeyboardHookServiceUnitTests.cs" />
     <Compile Include="TestingAreas\Areas\Hooking\MouseHooking\Domain\Factories\MouseInputFactoryUnitTests.cs" />
     <Compile Include="TestingAreas\Areas\Hooking\MouseHooking\Domain\Services\MouseHookServiceUnitTests.cs" />

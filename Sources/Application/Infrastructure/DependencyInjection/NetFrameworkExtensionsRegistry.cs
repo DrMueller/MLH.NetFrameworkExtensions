@@ -34,8 +34,8 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
             For<IKeyboardHookService>().Use<KeyboardHookService>().Transient();
             For<IKeyboardInputFactory>().Use<KeyboardInputFactory>().Singleton();
             For<IKeyboardInputKeyMappingServant>().Use<KeyboardInputKeyMappingServant>();
-            For<IModifierOptionsFactory>().Use<ModifierOptionsFactory>();
-            For<ILockOptionsFactory>().Use<LockOptionsFactory>();
+            For<IKeyboardInputModifiersFactory>().Use<KeyboardInputModifiersFactory>();
+            For<IKeyboardInputLocksFactory>().Use<KeyboardInputLocksFactory>();
 
             // Hooking - Mouse
             For<INativeMouseHookService>().Use<NativeMouseHookService>().Transient();

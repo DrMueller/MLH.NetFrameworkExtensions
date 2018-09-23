@@ -6,15 +6,15 @@ using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Imports;
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants.Implementation
 {
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StrcutureMap")]
-    internal class ModifierOptionsFactory : IModifierOptionsFactory
+    internal class KeyboardInputModifiersFactory : IKeyboardInputModifiersFactory
     {
-        public ModifierOptions Create()
+        public KeyboardInputModifiers Create()
         {
             var isShiftPressed = CheckIfActive(NativeMethods.GetKeyState(Keys.ShiftKey));
             var isCtrlpressed = CheckIfActive(NativeMethods.GetKeyState(Keys.ControlKey));
             var isAltpressed = CheckIfActive(NativeMethods.GetKeyState(Keys.Menu));
 
-            return new ModifierOptions(
+            return new KeyboardInputModifiers(
                 isCtrlpressed,
                 isAltpressed,
                 isShiftPressed);

@@ -2,8 +2,8 @@
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants
 {
-    internal interface ILockOptionsFactory
+    internal interface IKeyboardInputLocksFactory
     {
-        LockOptions Create();
+        KeyboardInputLocks Create();
     }
 }
