@@ -10,6 +10,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Se
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StrcutureMap")]
     internal class KeyboardHookService : IKeyboardHookService
     {
+        private readonly INativeKeyboardHookService _nativeKeyboardHookService;
         private readonly IKeyboardInputFactory _inputFactory;
         private Action<KeyboardInput> _onKeyboardInput;
 
@@ -17,13 +18,14 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Se
             INativeKeyboardHookService nativeKeyboardHookService,
             IKeyboardInputFactory inputFactory)
         {
+            _nativeKeyboardHookService = nativeKeyboardHookService;
             _inputFactory = inputFactory;
-            nativeKeyboardHookService.Hook(OnNativeKeyboardInput);
         }
 
         public void HookKeyboard(Action<KeyboardInput> onKeyboardInput)
         {
             _onKeyboardInput = onKeyboardInput;
+            _nativeKeyboardHookService.Hook(OnNativeKeyboardInput);
         }
 
         private void OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)

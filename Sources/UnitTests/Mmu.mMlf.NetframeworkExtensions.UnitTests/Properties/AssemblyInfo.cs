@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mmu.Mlh.NetFrameworkExtensions")]
+[assembly: AssemblyTitle("Mmu.mMlf.NetframeworkExtensions.UnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mmu.Mlh.NetFrameworkExtensions")]
+[assembly: AssemblyProduct("Mmu.mMlf.NetframeworkExtensions.UnitTests")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0ffde218-0560-4ec4-a8e6-650fb246623e")]
+[assembly: Guid("864b6746-2cbd-463f-a389-f33fd11dd29c")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,6 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: InternalsVisibleTo("Mmu.Mlh.NetframeworkExtensions.UnitTests")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]

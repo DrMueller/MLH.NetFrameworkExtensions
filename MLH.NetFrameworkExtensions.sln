@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\PInvoke.md = Documents\PInvoke.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Mlh.NetframeworkExtensions.UnitTests", "Sources\UnitTests\Mmu.mMlf.NetframeworkExtensions.UnitTests\Mmu.Mlh.NetframeworkExtensions.UnitTests.csproj", "{864B6746-2CBD-463F-A389-F33FD11DD29C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{C6D015CE-E34B-4135-ABA3-AD3AF3891AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6D015CE-E34B-4135-ABA3-AD3AF3891AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6D015CE-E34B-4135-ABA3-AD3AF3891AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{864B6746-2CBD-463F-A389-F33FD11DD29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{864B6746-2CBD-463F-A389-F33FD11DD29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{864B6746-2CBD-463F-A389-F33FD11DD29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{864B6746-2CBD-463F-A389-F33FD11DD29C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
