@@ -7,19 +7,19 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Mo
     {
         public KeyboardInputDirection Direction { get; }
         public KeyboardInputKey InputKey { get; }
-        public KeyboardInputLocks InputLocks { get; }
-        public KeyboardInputModifiers InputModifiers { get; }
+        public KeyboardInputLocks Locks { get; }
+        public KeyboardInputModifiers Modifiers { get; }
 
         public KeyboardInput(
             KeyboardInputKey inputKey,
             KeyboardInputDirection direction,
-            KeyboardInputLocks inputLocks,
-            KeyboardInputModifiers inputModifiers)
+            KeyboardInputLocks locks,
+            KeyboardInputModifiers modifiers)
         {
             InputKey = inputKey;
             Direction = direction;
-            InputLocks = inputLocks;
-            InputModifiers = inputModifiers;
+            Locks = locks;
+            Modifiers = modifiers;
         }
 
         public string CreateOverview()
@@ -27,12 +27,12 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Mo
             var sb = new StringBuilder();
             sb.AppendLine($"Key: {InputKey}");
             sb.AppendLine($"Direction: {Direction}");
-            sb.AppendLine($"Modifier Shift: {InputModifiers.IsShiftPressed}");
-            sb.AppendLine($"Modifier Ctrl: {InputModifiers.IsCtrlPressed}");
-            sb.AppendLine($"Modifier Alt: {InputModifiers.IsAltPressed}");
-            sb.AppendLine($"Lock Caps: {InputLocks.IsCapsLockActive}");
-            sb.AppendLine($"Lock Num: {InputLocks.IsNumLockActive}");
-            sb.AppendLine($"Lock Scroll: {InputLocks.IsScrollLockActive}");
+            sb.AppendLine($"Modifier Shift: {Modifiers.IsShiftPressed}");
+            sb.AppendLine($"Modifier Ctrl: {Modifiers.IsCtrlPressed}");
+            sb.AppendLine($"Modifier Alt: {Modifiers.IsAltPressed}");
+            sb.AppendLine($"Lock Caps: {Locks.IsCapsLockActive}");
+            sb.AppendLine($"Lock Num: {Locks.IsNumLockActive}");
+            sb.AppendLine($"Lock Scroll: {Locks.IsScrollLockActive}");
 
             return sb.ToString();
         }

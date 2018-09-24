@@ -87,12 +87,12 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             // Assert
             Assert.AreEqual(KeyboardInputDirection.KeyDown, actualInput.Direction);
             Assert.AreEqual(KeyboardInputKey.A, actualInput.InputKey);
-            Assert.AreEqual(true, actualInput.InputLocks.IsCapsLockActive);
-            Assert.AreEqual(false, actualInput.InputLocks.IsNumLockActive);
-            Assert.AreEqual(true, actualInput.InputLocks.IsScrollLockActive);
-            Assert.AreEqual(true, actualInput.InputModifiers.IsAltPressed);
-            Assert.AreEqual(true, actualInput.InputModifiers.IsCtrlPressed);
-            Assert.AreEqual(false, actualInput.InputModifiers.IsShiftPressed);
+            Assert.AreEqual(true, actualInput.Locks.IsCapsLockActive);
+            Assert.AreEqual(false, actualInput.Locks.IsNumLockActive);
+            Assert.AreEqual(true, actualInput.Locks.IsScrollLockActive);
+            Assert.AreEqual(true, actualInput.Modifiers.IsAltPressed);
+            Assert.AreEqual(true, actualInput.Modifiers.IsCtrlPressed);
+            Assert.AreEqual(false, actualInput.Modifiers.IsShiftPressed);
         }
 
         [SetUp]

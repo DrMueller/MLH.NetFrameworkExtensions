@@ -43,7 +43,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
             For<IMouseInputFactory>().Use<MouseInputFactory>().Singleton();
 
             // Infrastructure - WindowsNative
-            For<IHookService>().Use<HookService>().Transient();
+            For<IHookService>().Use<HookService>().AlwaysUnique();
         }
     }
 }
