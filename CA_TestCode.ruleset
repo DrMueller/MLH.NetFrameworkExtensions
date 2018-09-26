@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="MMU CA for UnitTests" Description="MMU rule set for UnitTests" ToolsVersion="14.0">
+<RuleSet Name="MMU CA for UnitTests" Description="MMU rule set for UnitTests" ToolsVersion="15.0">
   <IncludeAll Action="Warning" />
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1000" Action="None" />
@@ -13,6 +13,7 @@
     <Rule Id="CA1024" Action="None" />
     <Rule Id="CA1026" Action="None" />
     <Rule Id="CA1032" Action="None" />
+    <Rule Id="CA1040" Action="None" />
     <Rule Id="CA1054" Action="None" />
     <Rule Id="CA1062" Action="None" />
     <Rule Id="CA1303" Action="None" />
@@ -30,6 +31,7 @@
     <Rule Id="CA1804" Action="None" />
     <Rule Id="CA1806" Action="None" />
     <Rule Id="CA1811" Action="None" />
+    <Rule Id="CA1812" Action="None" />
     <Rule Id="CA1819" Action="None" />
     <Rule Id="CA1822" Action="None" />
     <Rule Id="CA1823" Action="None" />
@@ -61,5 +63,9 @@
     <Rule Id="CA2240" Action="None" />
     <Rule Id="CA2241" Action="None" />
     <Rule Id="CA2243" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
+    <Rule Id="CA1040" Action="None" />
+    <Rule Id="CA1812" Action="None" />
   </Rules>
 </RuleSet>
