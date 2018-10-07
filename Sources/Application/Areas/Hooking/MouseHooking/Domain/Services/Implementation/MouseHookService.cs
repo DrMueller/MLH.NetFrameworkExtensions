@@ -1,7 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Factories;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Models;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Services;
 
@@ -10,26 +10,34 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Servi
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StructureMap")]
     internal class MouseHookService : IMouseHookService
     {
-        private readonly IMouseInputFactory _mouseInputFactory;
+        private readonly IMouseInputFactory _inputFactory;
         private readonly INativeMouseHookService _nativeMouseHookService;
-        private Action<MouseInput> _onMouseInput;
+        private readonly IMouseInputReceiver[] _receivers;
 
-        public MouseHookService(INativeMouseHookService nativeMouseHookService, IMouseInputFactory mouseInputFactory)
+        public MouseHookService(
+            INativeMouseHookService nativeMouseHookService,
+            IMouseInputFactory inputFactory,
+            IMouseInputReceiver[] receivers)
         {
             _nativeMouseHookService = nativeMouseHookService;
-            _mouseInputFactory = mouseInputFactory;
+            _inputFactory = inputFactory;
+            _receivers = receivers;
         }
 
-        public void HookMouse(Action<MouseInput> onMouseInput)
+        public void HookMouse()
         {
-            _onMouseInput = onMouseInput;
             _nativeMouseHookService.Hook(OnNativeMouseInput);
         }
 
-        private void OnNativeMouseInput(NativeMouseInput nativeMouseInput)
+        private async void OnNativeMouseInput(NativeMouseInput nativeMouseInput)
         {
-            var mouseInput = _mouseInputFactory.CreateFromNativeMouseInput(nativeMouseInput);
-            _onMouseInput(mouseInput);
+            var keyboardInput = _inputFactory.CreateFromNativeMouseInput(nativeMouseInput);
+
+            var receivingTasks = _receivers
+                .Where(receiver => receiver.Configuration.CheckIfApplicable(keyboardInput))
+                .Select(receiver => receiver.ReceiveAsync(keyboardInput));
+
+            await Task.WhenAll(receivingTasks);
         }
     }
 }

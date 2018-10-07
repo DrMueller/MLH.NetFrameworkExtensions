@@ -26,6 +26,9 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
                 scanner =>
                 {
                     scanner.AssemblyContainingType<NetFrameworkExtensionsRegistry>();
+                    scanner.AssembliesFromApplicationBaseDirectory();
+                    scanner.AddAllTypesOf<IKeyboardInputReceiver>();
+                    scanner.AddAllTypesOf<IMouseInputReceiver>();
                     scanner.WithDefaultConventions();
                 });
 

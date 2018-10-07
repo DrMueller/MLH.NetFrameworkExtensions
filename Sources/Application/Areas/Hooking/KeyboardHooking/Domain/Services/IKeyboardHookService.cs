@@ -1,10 +1,9 @@
-﻿using System;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models;
+﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Configuration;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Services
 {
     public interface IKeyboardHookService
     {
-        void HookKeyboard(Action<KeyboardInput> onKeyboardInput);
+        void HookKeyboard();
     }
 }

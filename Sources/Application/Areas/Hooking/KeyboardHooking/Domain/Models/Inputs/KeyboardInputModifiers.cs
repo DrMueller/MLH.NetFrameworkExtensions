@@ -1,4 +1,4 @@
-﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models
+﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Inputs
 {
     public class KeyboardInputModifiers
     {

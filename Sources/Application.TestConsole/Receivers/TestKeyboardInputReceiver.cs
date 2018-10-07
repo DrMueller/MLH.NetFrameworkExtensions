@@ -1,0 +1,20 @@
+﻿using System;
+using System.Threading.Tasks;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Configuration;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Inputs;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Services;
+
+namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole.Receivers
+{
+    public class TestKeyboardInputReceiver : IKeyboardInputReceiver
+    {
+        private static Lazy<KeyboardEventConfiguration> _config = new Lazy<KeyboardEventConfiguration>(KeyboardEventConfiguration.CreateForAllEvents);
+        public KeyboardEventConfiguration Configuration => _config.Value;
+
+        public Task ReceiveAsync(KeyboardInput input)
+        {
+            Console.WriteLine(input.CreateOverview());
+            return Task.CompletedTask;
+        }
+    }
+}

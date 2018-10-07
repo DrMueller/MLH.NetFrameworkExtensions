@@ -1,7 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNative.Models;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNative.Services;
 
@@ -10,28 +10,34 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Se
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StrcutureMap")]
     internal class KeyboardHookService : IKeyboardHookService
     {
-        private readonly INativeKeyboardHookService _nativeKeyboardHookService;
         private readonly IKeyboardInputFactory _inputFactory;
-        private Action<KeyboardInput> _onKeyboardInput;
+        private readonly INativeKeyboardHookService _nativeKeyboardHookService;
+        private readonly IKeyboardInputReceiver[] _receivers;
 
         public KeyboardHookService(
             INativeKeyboardHookService nativeKeyboardHookService,
-            IKeyboardInputFactory inputFactory)
+            IKeyboardInputFactory inputFactory,
+            IKeyboardInputReceiver[] receivers)
         {
             _nativeKeyboardHookService = nativeKeyboardHookService;
             _inputFactory = inputFactory;
+            _receivers = receivers;
         }
 
-        public void HookKeyboard(Action<KeyboardInput> onKeyboardInput)
+        public void HookKeyboard()
         {
-            _onKeyboardInput = onKeyboardInput;
             _nativeKeyboardHookService.Hook(OnNativeKeyboardInput);
         }
 
-        private void OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
+        private async void OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
         {
             var keyboardInput = _inputFactory.CreateFromNativeKeyboardInput(nativeKeyboardInput);
-            _onKeyboardInput(keyboardInput);
+
+            var receivingTasks = _receivers
+                .Where(receiver => receiver.Configuration.CheckIfApplicable(keyboardInput))
+                .Select(receiver => receiver.ReceiveAsync(keyboardInput));
+
+            await Task.WhenAll(receivingTasks);
         }
     }
 }

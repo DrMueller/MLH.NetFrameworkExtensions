@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
 
-namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Inputs
 {
     public class KeyboardInput : IInput
     {
