@@ -18,7 +18,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Mo
             var nativeMouseInput = new NativeMouseInput(NativeMouseInputKey.Left, NativeMouseInputDirection.MouseUp);
 
             // Act
-            var actualMouseInput = _sut.CreateFromNativeMouseInput(nativeMouseInput);
+            var actualMouseInput = _sut.Create(nativeMouseInput);
 
             // Assert
             Assert.AreEqual(MouseInputKey.Left, actualMouseInput.InputKey);

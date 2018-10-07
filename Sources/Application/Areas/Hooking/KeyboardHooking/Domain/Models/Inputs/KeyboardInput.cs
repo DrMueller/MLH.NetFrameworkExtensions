@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models.Inputs;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Inputs
 {

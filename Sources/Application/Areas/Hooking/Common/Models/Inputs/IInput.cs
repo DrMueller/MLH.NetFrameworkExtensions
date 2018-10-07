@@ -1,4 +1,4 @@
-﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models
+﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models.Inputs
 {
 #pragma warning disable CA1040 // Avoid empty interfaces
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1040:AvoidEmptyInterfaces", Justification = "Marker Interface")]

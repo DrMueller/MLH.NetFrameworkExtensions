@@ -29,7 +29,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, true));
 
             // Act
-            _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
+            _sut.Create(nativeKeyboardInput);
 
             // Assert
             _inputKeyMappingServantMock.Verify(f => f.MapFromNativeKey(NativeKey), Times.Once);
@@ -47,7 +47,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, true));
 
             // Act
-            _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
+            _sut.Create(nativeKeyboardInput);
 
             // Assert
             _lockOptionsFactoryMock.Verify(f => f.Create(), Times.Once);
@@ -65,7 +65,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, true));
 
             // Act
-            _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
+            _sut.Create(nativeKeyboardInput);
 
             // Assert
             _modifierOptionsFactoryMock.Verify(f => f.Create(), Times.Once);
@@ -83,7 +83,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             _modifierOptionsFactoryMock.Setup(f => f.Create()).Returns(new KeyboardInputModifiers(true, true, false));
 
             // Act
-            var actualInput = _sut.CreateFromNativeKeyboardInput(nativeKeyboardInput);
+            var actualInput = _sut.Create(nativeKeyboardInput);
 
             // Assert
             Assert.AreEqual(KeyboardInputDirection.KeyDown, actualInput.Direction);

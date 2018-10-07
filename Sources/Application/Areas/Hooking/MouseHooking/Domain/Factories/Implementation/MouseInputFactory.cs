@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Inputs;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Models;
 
@@ -8,11 +7,11 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Facto
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StructureMap")]
     internal class MouseInputFactory : IMouseInputFactory
     {
-        public MouseInput CreateFromNativeMouseInput(NativeMouseInput nativeMouseInput)
+        public MouseInput Create(NativeMouseInput nativeInput)
         {
             return new MouseInput(
-                MapKey(nativeMouseInput.Key),
-                MapDirection(nativeMouseInput.Direction));
+                MapKey(nativeInput.Key),
+                MapDirection(nativeInput.Direction));
         }
 
         private static MouseInputDirection MapDirection(NativeMouseInputDirection nativeDirection)

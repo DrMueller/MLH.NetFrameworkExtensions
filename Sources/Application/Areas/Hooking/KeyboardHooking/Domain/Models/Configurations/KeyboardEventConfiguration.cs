@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models.Configurations;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Inputs;
 
-namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Configuration
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Configurations
 {
-    public class KeyboardEventConfiguration
+    public class KeyboardEventConfiguration : IEventConfiguration
     {
         public KeyboardInputKeyConfiguration InputKeyConfiguration { get; }
         public LockConfiguration LockConfiguration { get; }

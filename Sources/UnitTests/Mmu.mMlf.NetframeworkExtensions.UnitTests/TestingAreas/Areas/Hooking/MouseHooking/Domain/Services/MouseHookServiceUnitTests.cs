@@ -1,7 +1,7 @@
 ﻿using System;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Options;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Factories;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Configuration;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Configurations;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Inputs;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Services;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Services.Implementation;
@@ -28,7 +28,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Mo
             _receiverMock.Setup(f => f.ReceiveAsync(It.IsAny<MouseInput>()));
             _receiverMock.Setup(f => f.Configuration).Returns(actualConfiguration);
 
-            _mouseInputFactoryMock.Setup(f => f.CreateFromNativeMouseInput(It.IsAny<NativeMouseInput>())).Returns(new MouseInput(MouseInputKey.Left, MouseInputDirection.MouseUp));
+            _mouseInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeMouseInput>())).Returns(new MouseInput(MouseInputKey.Left, MouseInputDirection.MouseUp));
 
             Action<NativeMouseInput> _nativeInputCallback = null;
             _nativeMouseHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeMouseInput>>())).Callback<Action<NativeMouseInput>>(a => _nativeInputCallback = a);
@@ -55,7 +55,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Mo
             _receiverMock.Setup(f => f.ReceiveAsync(It.IsAny<MouseInput>()));
             _receiverMock.Setup(f => f.Configuration).Returns(mouseEventConfiguration);
 
-            _mouseInputFactoryMock.Setup(f => f.CreateFromNativeMouseInput(It.IsAny<NativeMouseInput>())).Returns(mouseInput);
+            _mouseInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeMouseInput>())).Returns(mouseInput);
 
             Action<NativeMouseInput> _nativeInputCallback = null;
             _nativeMouseHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeMouseInput>>())).Callback<Action<NativeMouseInput>>(a => _nativeInputCallback = a);
@@ -76,7 +76,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Mo
             // Arrange
             Action<NativeMouseInput> _nativeInputCallback = null;
             _nativeMouseHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeMouseInput>>())).Callback<Action<NativeMouseInput>>(a => _nativeInputCallback = a);
-            _mouseInputFactoryMock.Setup(f => f.CreateFromNativeMouseInput(It.IsAny<NativeMouseInput>()));
+            _mouseInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeMouseInput>()));
 
             _sut.HookMouse();
 
@@ -86,7 +86,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Mo
             _nativeInputCallback(nativeMouseInput);
 
             // Assert
-            _mouseInputFactoryMock.Verify(f => f.CreateFromNativeMouseInput(nativeMouseInput), Times.Once);
+            _mouseInputFactoryMock.Verify(f => f.Create(nativeMouseInput), Times.Once);
         }
 
         [SetUp]

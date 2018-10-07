@@ -1,4 +1,5 @@
-﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories;
+﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Services;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Implementation;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants.Implementation;
@@ -27,8 +28,6 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
                 {
                     scanner.AssemblyContainingType<NetFrameworkExtensionsRegistry>();
                     scanner.AssembliesFromApplicationBaseDirectory();
-                    scanner.AddAllTypesOf<IKeyboardInputReceiver>();
-                    scanner.AddAllTypesOf<IMouseInputReceiver>();
                     scanner.WithDefaultConventions();
                 });
 

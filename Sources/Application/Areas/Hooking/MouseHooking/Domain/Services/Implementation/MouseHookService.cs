@@ -31,7 +31,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Servi
 
         private async void OnNativeMouseInput(NativeMouseInput nativeMouseInput)
         {
-            var keyboardInput = _inputFactory.CreateFromNativeMouseInput(nativeMouseInput);
+            var keyboardInput = _inputFactory.Create(nativeMouseInput);
 
             var receivingTasks = _receivers
                 .Where(receiver => receiver.Configuration.CheckIfApplicable(keyboardInput))

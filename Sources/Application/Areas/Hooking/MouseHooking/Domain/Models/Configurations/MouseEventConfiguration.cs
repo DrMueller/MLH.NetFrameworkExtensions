@@ -1,9 +1,10 @@
 ﻿using Mmu.Mlh.LanguageExtensions.Areas.Types.Options;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models.Configurations;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Inputs;
 
-namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Configuration
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Configurations
 {
-    public class MouseEventConfiguration
+    public class MouseEventConfiguration : IEventConfiguration
     {
         public Option<MouseInputDirection> InputDirection { get; }
         public Option<MouseInputKey> InputKey { get; }

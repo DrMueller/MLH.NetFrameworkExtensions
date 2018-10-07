@@ -55,7 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Hooking\Common\Models\IInput.cs" />
+    <Compile Include="Areas\Hooking\Common\Models\Configurations\IEventConfiguration.cs" />
+    <Compile Include="Areas\Hooking\Common\Models\Inputs\IInput.cs" />
+    <Compile Include="Areas\Hooking\Common\Factories\IInputFactory.cs" />
+    <Compile Include="Areas\Hooking\Common\Models\Inputs\INativeInput.cs" />
+    <Compile Include="Areas\Hooking\Common\Services\IInputReceivre.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\Implementation\KeyboardInputFactory.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\IKeyboardInputFactory.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\Servants\IKeyboardInputKeyMappingServant.cs" />
@@ -64,11 +68,11 @@
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\Servants\Implementation\KeyboardInputKeyMappingServant.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\Servants\Implementation\KeyboardInputLocksFactory.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Factories\Servants\Implementation\KeyboardInputModifiersFactory.cs" />
-    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configuration\KeyboardEventConfiguration.cs" />
-    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configuration\KeyboardInputMap.cs" />
-    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configuration\KeyboardInputKeyConfiguration.cs" />
-    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configuration\LockConfiguration.cs" />
-    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configuration\ModifierConfiguration.cs" />
+    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configurations\KeyboardEventConfiguration.cs" />
+    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configurations\KeyboardInputMap.cs" />
+    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configurations\KeyboardInputKeyConfiguration.cs" />
+    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configurations\LockConfiguration.cs" />
+    <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Configurations\ModifierConfiguration.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Inputs\KeyboardInputDirection.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Inputs\KeyboardInput.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\Domain\Models\Inputs\KeyboardInputKey.cs" />
@@ -81,7 +85,7 @@
     <Compile Include="Areas\Hooking\KeyboardHooking\WindowsNative\Models\NativeKeyboardInputDirection.cs" />
     <Compile Include="Areas\Hooking\MouseHooking\Domain\Factories\IMouseInputFactory.cs" />
     <Compile Include="Areas\Hooking\MouseHooking\Domain\Factories\Implementation\MouseInputFactory.cs" />
-    <Compile Include="Areas\Hooking\MouseHooking\Domain\Models\Configuration\MouseEventConfiguration.cs" />
+    <Compile Include="Areas\Hooking\MouseHooking\Domain\Models\Configurations\MouseEventConfiguration.cs" />
     <Compile Include="Areas\Hooking\MouseHooking\Domain\Models\Inputs\MouseInput.cs" />
     <Compile Include="Areas\Hooking\MouseHooking\Domain\Models\Inputs\MouseInputDirection.cs" />
     <Compile Include="Areas\Hooking\MouseHooking\Domain\Models\Inputs\MouseInputKey.cs" />
@@ -123,6 +127,7 @@
     <Analyzer Include="..\..\packages\Text.Analyzers.2.6.0\analyzers\dotnet\cs\Text.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Text.Analyzers.2.6.0\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

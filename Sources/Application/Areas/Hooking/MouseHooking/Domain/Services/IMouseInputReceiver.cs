@@ -1,13 +1,10 @@
-﻿using System.Threading.Tasks;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Configuration;
+﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Services;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Configurations;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Models.Inputs;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Services
 {
-    public interface IMouseInputReceiver
+    public interface IMouseInputReceiver : IInputReceiver<MouseInput, MouseEventConfiguration>
     {
-        MouseEventConfiguration Configuration { get; }
-
-        Task ReceiveAsync(MouseInput input);
     }
 }

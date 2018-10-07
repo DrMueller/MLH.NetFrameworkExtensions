@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Configurations;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Models.Inputs;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Services;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Services.Implementation;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNative.Models;
@@ -18,51 +21,89 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
         private Mock<IKeyboardInputReceiver> _receiverMock;
         private KeyboardHookService _sut;
 
-        //[Test]
-        //public void ReceivingNativeInput_WhenHooked_CallsFactoryWithReceivedInput()
-        //{
-        //    // Arrange
-        //    Action<NativeKeyboardInput> _nativeInputCallback = null;
-        //    _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(a => _nativeInputCallback = a);
-        //    _keyboardInputFactoryMock.Setup(f => f.CreateFromNativeKeyboardInput(It.IsAny<NativeKeyboardInput>()));
+        [Test]
+        public void ReceivingNativeInput_ReceiverConfiguredForAllEvents_CallsReceiver()
+        {
+            // Arrange
+            var keyboardEventConfiguration = KeyboardEventConfiguration.CreateForAllEvents();
 
-        //    _sut.HookKeyboard(
-        //        keyboardInput =>
-        //        {
-        //        });
+            var keyboardInput = new KeyboardInput(
+                KeyboardInputKey.A,
+                KeyboardInputDirection.KeyDown,
+                new KeyboardInputLocks(false, false, false),
+                new KeyboardInputModifiers(true, false, false));
 
-        //    var nativeKeyboardInput = new NativeKeyboardInput(Keys.A, NativeKeyboardInputDirection.KeyDown);
+            _receiverMock.Setup(f => f.ReceiveAsync(It.IsAny<KeyboardInput>()));
+            _receiverMock.Setup(f => f.Configuration).Returns(keyboardEventConfiguration);
 
-        //    // Act
-        //    _nativeInputCallback(nativeKeyboardInput);
+            _keyboardInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeKeyboardInput>())).Returns(keyboardInput);
 
-        //    // Assert
-        //    _keyboardInputFactoryMock.Verify(f => f.CreateFromNativeKeyboardInput(nativeKeyboardInput), Times.Once);
-        //}
+            Action<NativeKeyboardInput> _nativeInputCallback = null;
+            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(a => _nativeInputCallback = a);
 
-        //[Test]
-        //public void ReceivingNativeInput_WhenHooked_CallsCallback()
-        //{
-        //    // Arrange
-        //    Action<NativeKeyboardInput> _nativeInputCallback = null;
-        //    _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(a => _nativeInputCallback = a);
-        //    _keyboardInputFactoryMock.Setup(f => f.CreateFromNativeKeyboardInput(It.IsAny<NativeKeyboardInput>()));
+            _sut.HookKeyboard();
+            var nativeKeyboardInput = new NativeKeyboardInput(Keys.A, NativeKeyboardInputDirection.KeyDown);
 
-        //    var callbackHasBeenCalled = false;
-        //    _sut.HookKeyboard(
-        //        keyboardInput =>
-        //        {
-        //            callbackHasBeenCalled = true;
-        //        });
+            // Act
+            _nativeInputCallback(nativeKeyboardInput);
 
-        //    var nativeKeyboardInput = new NativeKeyboardInput(Keys.A, NativeKeyboardInputDirection.KeyDown);
+            // Assert
+            _receiverMock.Verify(f => f.ReceiveAsync(It.IsAny<KeyboardInput>()), Times.Once);
+        }
 
-        //    // Act
-        //    _nativeInputCallback(nativeKeyboardInput);
+        [Test]
+        public void ReceivingNativeInput_ReceiverNotConfiguredForEvent_DoesNotCallReceiver()
+        {
+            // Arrange
+            const bool ScrollLockMustBeActive = true;
 
-        //    // Assert
-        //    Assert.IsTrue(callbackHasBeenCalled);
-        //}
+            var keyboardInput = new KeyboardInput(
+                KeyboardInputKey.A,
+                KeyboardInputDirection.KeyDown,
+                new KeyboardInputLocks(false, false, false),
+                new KeyboardInputModifiers(!ScrollLockMustBeActive, false, false));
+
+            var keyboardEventConfiguration = new KeyboardEventConfiguration(
+                new KeyboardInputKeyConfiguration(KeyboardInputKey.AllKeys.ToArray()),
+                ModifierConfiguration.CreateNotApplibable(),
+                new LockConfiguration(ScrollLockMustBeActive, false, false));
+
+            _receiverMock.Setup(f => f.ReceiveAsync(It.IsAny<KeyboardInput>()));
+            _receiverMock.Setup(f => f.Configuration).Returns(keyboardEventConfiguration);
+
+            _keyboardInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeKeyboardInput>())).Returns(keyboardInput);
+
+            Action<NativeKeyboardInput> _nativeInputCallback = null;
+            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(a => _nativeInputCallback = a);
+
+            _sut.HookKeyboard();
+            var nativeKeyboardInput = new NativeKeyboardInput(Keys.Alt, NativeKeyboardInputDirection.KeyUp);
+
+            // Act
+            _nativeInputCallback(nativeKeyboardInput);
+
+            // Assert
+            _receiverMock.Verify(f => f.ReceiveAsync(It.IsAny<KeyboardInput>()), Times.Never);
+        }
+
+        [Test]
+        public void ReceivingNativeInput_WhenHooked_CallsFactoryWithReceivedInput()
+        {
+            // Arrange
+            Action<NativeKeyboardInput> _nativeInputCallback = null;
+            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(a => _nativeInputCallback = a);
+            _keyboardInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeKeyboardInput>()));
+
+            _sut.HookKeyboard();
+
+            var nativeKeyboardInput = new NativeKeyboardInput(Keys.A, NativeKeyboardInputDirection.KeyDown);
+
+            // Act
+            _nativeInputCallback(nativeKeyboardInput);
+
+            // Assert
+            _keyboardInputFactoryMock.Verify(f => f.Create(nativeKeyboardInput), Times.Once);
+        }
 
         [SetUp]
         public void SetUp()

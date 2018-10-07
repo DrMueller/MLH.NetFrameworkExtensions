@@ -31,7 +31,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Se
 
         private async void OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
         {
-            var keyboardInput = _inputFactory.CreateFromNativeKeyboardInput(nativeKeyboardInput);
+            var keyboardInput = _inputFactory.Create(nativeKeyboardInput);
 
             var receivingTasks = _receivers
                 .Where(receiver => receiver.Configuration.CheckIfApplicable(keyboardInput))
