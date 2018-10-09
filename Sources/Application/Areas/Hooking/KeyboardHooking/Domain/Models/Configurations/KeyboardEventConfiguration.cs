@@ -22,18 +22,19 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Mo
             LockConfiguration = lockConfiguration;
         }
 
-        public static KeyboardEventConfiguration CreateForAllEvents()
-        {
-            return new KeyboardEventConfiguration(new KeyboardInputKeyConfiguration(KeyboardInputKey.AllKeys.ToArray()),
-                ModifierConfiguration.CreateNotApplibable(),
-                LockConfiguration.CreateNotApplicable());
-        }
-
         public bool CheckIfApplicable(KeyboardInput input)
         {
             return InputKeyConfiguration.CheckIfApplicable(input.InputKey) &&
                 ModifierConfiguration.CheckIfApplicable(input.Modifiers) &&
                 LockConfiguration.CheckIfApplicable(input.Locks);
+        }
+
+        public static KeyboardEventConfiguration CreateForAllEvents()
+        {
+            return new KeyboardEventConfiguration(
+                new KeyboardInputKeyConfiguration(KeyboardInputKey.AllKeys.ToArray()),
+                ModifierConfiguration.CreateNotApplibable(),
+                LockConfiguration.CreateNotApplicable());
         }
     }
 }

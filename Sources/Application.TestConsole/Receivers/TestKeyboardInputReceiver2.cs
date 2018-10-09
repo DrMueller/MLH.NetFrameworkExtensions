@@ -6,7 +6,7 @@ using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Servic
 
 namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole.Receivers
 {
-    public class TestKeyboardInputReceiver : IKeyboardInputReceiver
+    public class TestKeyboardInputReceiver2 : IKeyboardInputReceiver
     {
         private static Lazy<KeyboardEventConfiguration> _config = new Lazy<KeyboardEventConfiguration>(KeyboardEventConfiguration.CreateForAllEvents);
         public KeyboardEventConfiguration Configuration => _config.Value;
@@ -14,7 +14,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole.Receivers
         public Task<bool> ReceiveAsync(KeyboardInput input)
         {
             Console.WriteLine(input.CreateOverview());
-            return Task.FromResult(false);
+            return Task.FromResult(true);
         }
     }
 }

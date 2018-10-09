@@ -5,6 +5,6 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNa
 {
     internal interface INativeKeyboardHookService
     {
-        void Hook(Action<NativeKeyboardInput> onKeyboardInput);
+        void Hook(Func<NativeKeyboardInput, bool> onKeyboardInput);
     }
 }

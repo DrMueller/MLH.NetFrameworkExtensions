@@ -29,15 +29,17 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Se
             _nativeKeyboardHookService.Hook(OnNativeKeyboardInput);
         }
 
-        private async void OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
+        private bool OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
         {
             var keyboardInput = _inputFactory.Create(nativeKeyboardInput);
 
             var receivingTasks = _receivers
                 .Where(receiver => receiver.Configuration.CheckIfApplicable(keyboardInput))
-                .Select(receiver => receiver.ReceiveAsync(keyboardInput));
+                .Select(receiver => receiver.ReceiveAsync(keyboardInput))
+                .ToArray();
 
-            await Task.WhenAll(receivingTasks);
+            Task.WaitAll(receivingTasks);
+            return receivingTasks.All(task => task.Result);
         }
     }
 }

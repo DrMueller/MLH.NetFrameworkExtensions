@@ -10,6 +10,6 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Services
     {
         TConfig Configuration { get; }
 
-        Task ReceiveAsync(TInput input);
+        Task<bool> ReceiveAsync(TInput input);
     }
 }

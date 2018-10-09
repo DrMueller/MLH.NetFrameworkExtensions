@@ -13,7 +13,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNa
         private const int WmKeydown = 0x100;
         private const int WmKeyup = 0x101;
         private readonly IHookService _hookService;
-        private Action<NativeKeyboardInput> _onKeyboardInput;
+        private Func<NativeKeyboardInput, bool> _onKeyboardInput;
 
         public NativeKeyboardHookService(IHookService hookService)
         {
@@ -26,7 +26,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNa
             GC.SuppressFinalize(this);
         }
 
-        public void Hook(Action<NativeKeyboardInput> onKeyboardInput)
+        public void Hook(Func<NativeKeyboardInput, bool> onKeyboardInput)
         {
             _onKeyboardInput = onKeyboardInput;
             _hookService.Hook(HookType.KeyBoardLowLevel, OnHookReceived);
@@ -40,22 +40,21 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNa
             }
         }
 
-        private void OnHookReceived(int wordParam, int longParam)
+        private bool OnHookReceived(int wordParam, int longParam)
         {
             switch (wordParam)
             {
                 case WmKeydown:
                 {
-                    _onKeyboardInput(new NativeKeyboardInput((Keys)longParam, NativeKeyboardInputDirection.KeyDown));
-                    break;
+                    return _onKeyboardInput(new NativeKeyboardInput((Keys)longParam, NativeKeyboardInputDirection.KeyDown));
                 }
                 case WmKeyup:
                 {
-                    _onKeyboardInput(new NativeKeyboardInput((Keys)longParam, NativeKeyboardInputDirection.KeyUp));
-
-                    break;
+                    return _onKeyboardInput(new NativeKeyboardInput((Keys)longParam, NativeKeyboardInputDirection.KeyUp));
                 }
             }
+
+            return true;
         }
 
         ~NativeKeyboardHookService()

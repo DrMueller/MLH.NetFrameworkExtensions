@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Models.Inputs;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNative.Models
