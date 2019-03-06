@@ -11,10 +11,10 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole.Receivers
         private static Lazy<KeyboardEventConfiguration> _config = new Lazy<KeyboardEventConfiguration>(KeyboardEventConfiguration.CreateForAllEvents);
         public KeyboardEventConfiguration Configuration => _config.Value;
 
-        public Task<bool> ReceiveAsync(KeyboardInput input)
+        public Task ReceiveAsync(KeyboardInput input)
         {
             Console.WriteLine(input.CreateOverview());
-            return Task.FromResult(false);
+            return Task.CompletedTask;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Servi
             _nativeMouseHookService.Hook(OnNativeMouseInput);
         }
 
-        private bool OnNativeMouseInput(NativeMouseInput nativeMouseInput)
+        private void OnNativeMouseInput(NativeMouseInput nativeMouseInput)
         {
             var keyboardInput = _inputFactory.Create(nativeMouseInput);
 
@@ -38,8 +38,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Servi
                 .Select(receiver => receiver.ReceiveAsync(keyboardInput))
                 .ToArray();
 
-            Task.WaitAll(receivingTasks);
-            return receivingTasks.All(task => task.Result);
+            Task.Run(() => Task.WhenAll(receivingTasks));
         }
     }
 }

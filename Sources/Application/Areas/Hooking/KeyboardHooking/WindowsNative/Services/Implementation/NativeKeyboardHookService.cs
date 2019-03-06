@@ -47,11 +47,12 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNa
                 case WmKeydown:
                 {
                     _onKeyboardInput(new NativeKeyboardInput((Keys)longParam, NativeKeyboardInputDirection.KeyDown));
+                    break;
                 }
                 case WmKeyup:
                 {
                     _onKeyboardInput(new NativeKeyboardInput((Keys)longParam, NativeKeyboardInputDirection.KeyUp));
-                        break;
+                    break;
                 }
             }
         }

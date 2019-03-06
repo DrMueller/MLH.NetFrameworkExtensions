@@ -14,7 +14,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNativ
         private const int WmRbuttondown = 0x0204;
         private const int WmRbuttonup = 0x0205;
         private readonly IHookService _hookService;
-        private Func<NativeMouseInput, bool> _onMouseInput;
+        private Action<NativeMouseInput> _onMouseInput;
 
         public NativeMouseHookService(IHookService hookService)
         {
@@ -27,7 +27,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNativ
             GC.SuppressFinalize(this);
         }
 
-        public void Hook(Func<NativeMouseInput, bool> onMouseInput)
+        public void Hook(Action<NativeMouseInput> onMouseInput)
         {
             _onMouseInput = onMouseInput;
             _hookService.Hook(HookType.MouseLowlevel, OnHookReceived);
@@ -41,29 +41,31 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNativ
             }
         }
 
-        private bool OnHookReceived(int wordParam, int longParam)
+        private void OnHookReceived(int wordParam, int longParam)
         {
             switch (wordParam)
             {
                 case WmLbuttondown:
                 {
-                    return _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Left, NativeMouseInputDirection.MouseDown));
+                    _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Left, NativeMouseInputDirection.MouseDown));
+                    break;
                 }
                 case WmLbuttonup:
                 {
-                    return _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Left, NativeMouseInputDirection.MouseUp));
+                    _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Left, NativeMouseInputDirection.MouseUp));
+                    break;
                 }
                 case WmRbuttondown:
                 {
-                    return _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Right, NativeMouseInputDirection.MouseDown));
+                    _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Right, NativeMouseInputDirection.MouseDown));
+                    break;
                 }
                 case WmRbuttonup:
                 {
-                    return _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Right, NativeMouseInputDirection.MouseUp));
+                    _onMouseInput(new NativeMouseInput(NativeMouseInputKey.Right, NativeMouseInputDirection.MouseUp));
+                    break;
                 }
             }
-
-            return true;
         }
 
         ~NativeMouseHookService()

@@ -5,6 +5,6 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNativ
 {
     internal interface INativeMouseHookService : IDisposable
     {
-        void Hook(Func<NativeMouseInput, bool> onMouseInput);
+        void Hook(Action<NativeMouseInput> onMouseInput);
     }
 }

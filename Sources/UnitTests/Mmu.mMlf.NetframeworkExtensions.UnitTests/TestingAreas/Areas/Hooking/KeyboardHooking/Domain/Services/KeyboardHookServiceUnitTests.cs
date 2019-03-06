@@ -38,11 +38,12 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
             _receiverMock.Setup(f => f.Configuration).Returns(keyboardEventConfiguration);
             _keyboardInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeKeyboardInput>())).Returns(keyboardInput);
 
-            Func<NativeKeyboardInput, bool> nativeInputCallback = null;
-            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Func<NativeKeyboardInput, bool>>())).Callback<Func<NativeKeyboardInput, bool>>(func =>
-                   {
-                       nativeInputCallback = func;
-                   });
+            Action<NativeKeyboardInput> nativeInputCallback = null;
+            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(
+                func =>
+                {
+                    nativeInputCallback = func;
+                });
 
             _sut.HookKeyboard();
             var nativeKeyboardInput = new NativeKeyboardInput(Keys.A, NativeKeyboardInputDirection.KeyDown);
@@ -76,8 +77,8 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
 
             _keyboardInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeKeyboardInput>())).Returns(keyboardInput);
 
-            Func<NativeKeyboardInput, bool> nativeInputCallback = null;
-            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Func<NativeKeyboardInput, bool>>())).Callback<Func<NativeKeyboardInput, bool>>(a => nativeInputCallback = a);
+            Action<NativeKeyboardInput> nativeInputCallback = null;
+            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(a => nativeInputCallback = a);
 
             _sut.HookKeyboard();
             var nativeKeyboardInput = new NativeKeyboardInput(Keys.Alt, NativeKeyboardInputDirection.KeyUp);
@@ -93,8 +94,8 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
         public void ReceivingNativeInput_WhenHooked_CallsFactoryWithReceivedInput()
         {
             // Arrange
-            Func<NativeKeyboardInput, bool> nativeInputCallback = null;
-            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Func<NativeKeyboardInput, bool>>())).Callback<Func<NativeKeyboardInput, bool>>(a => nativeInputCallback = a);
+            Action<NativeKeyboardInput> nativeInputCallback  = null;
+            _nativeKeyboardHookServiceMock.Setup(f => f.Hook(It.IsAny<Action<NativeKeyboardInput>>())).Callback<Action<NativeKeyboardInput>>(a => nativeInputCallback = a);
             _keyboardInputFactoryMock.Setup(f => f.Create(It.IsAny<NativeKeyboardInput>()));
 
             var keyboardInput = new KeyboardInput(

@@ -11,10 +11,10 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole.Receivers
         private static Lazy<MouseEventConfiguration> _config = new Lazy<MouseEventConfiguration>(MouseEventConfiguration.CreateForAllEvents);
         public MouseEventConfiguration Configuration => _config.Value;
 
-        public Task<bool> ReceiveAsync(MouseInput input)
+        public Task ReceiveAsync(MouseInput input)
         {
             Console.WriteLine(input.CreateOverview());
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
     }
 }
