@@ -51,12 +51,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.I
 
             var wordParamInt32 = wordParam.ToInt32();
             var longParamInt32 = Marshal.ReadInt32(longParam);
-            var passHookForward = _hookReceivedCallback(wordParamInt32, longParamInt32);
-
-            if (!passHookForward)
-            {
-                return IntPtr.Zero;
-            }
+            _hookReceivedCallback(wordParamInt32, longParamInt32);
 
             return NativeMethods.CallNextHookEx(_hookId.DangerousGetHandle(), code, wordParam, longParam);
         }

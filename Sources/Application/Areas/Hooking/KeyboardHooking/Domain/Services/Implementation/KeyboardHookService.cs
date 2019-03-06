@@ -29,7 +29,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Se
             _nativeKeyboardHookService.Hook(OnNativeKeyboardInput);
         }
 
-        private bool OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
+        private void OnNativeKeyboardInput(NativeKeyboardInput nativeKeyboardInput)
         {
             var keyboardInput = _inputFactory.Create(nativeKeyboardInput);
 
@@ -38,8 +38,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Se
                 .Select(receiver => receiver.ReceiveAsync(keyboardInput))
                 .ToArray();
 
-            Task.WaitAll(receivingTasks);
-            return receivingTasks.All(task => task.Result);
+            Task.Run(() => Task.WhenAll(receivingTasks));
         }
     }
 }
