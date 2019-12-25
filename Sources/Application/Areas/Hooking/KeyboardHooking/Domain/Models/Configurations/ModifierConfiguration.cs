@@ -28,7 +28,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Mo
                 AltMustBePressed == inputModifiers.IsAltPressed;
         }
 
-        public static ModifierConfiguration CreateNotApplibable()
+        public static ModifierConfiguration CreateNotApplicable()
         {
             return new ModifierConfiguration(
                 Option.CreateNotApplicable<bool>(true),

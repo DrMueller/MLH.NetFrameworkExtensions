@@ -33,7 +33,7 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Mo
         {
             return new KeyboardEventConfiguration(
                 new KeyboardInputKeyConfiguration(KeyboardInputKey.AllKeys.ToArray()),
-                ModifierConfiguration.CreateNotApplibable(),
+                ModifierConfiguration.CreateNotApplicable(),
                 LockConfiguration.CreateNotApplicable());
         }
     }

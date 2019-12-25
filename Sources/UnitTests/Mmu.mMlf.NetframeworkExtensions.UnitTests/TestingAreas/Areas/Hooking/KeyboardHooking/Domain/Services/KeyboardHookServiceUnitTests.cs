@@ -69,7 +69,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
 
             var keyboardEventConfiguration = new KeyboardEventConfiguration(
                 new KeyboardInputKeyConfiguration(KeyboardInputKey.AllKeys.ToArray()),
-                ModifierConfiguration.CreateNotApplibable(),
+                ModifierConfiguration.CreateNotApplicable(),
                 new LockConfiguration(ScrollLockMustBeActive, false, false));
 
             _receiverMock.Setup(f => f.ReceiveAsync(It.IsAny<KeyboardInput>())).Returns(Task.FromResult(true));
@@ -108,7 +108,7 @@ namespace Mmu.Mlh.NetframeworkExtensions.UnitTests.TestingAreas.Areas.Hooking.Ke
 
             var keyboardEventConfiguration = new KeyboardEventConfiguration(
                 new KeyboardInputKeyConfiguration(KeyboardInputKey.AllKeys.ToArray()),
-                ModifierConfiguration.CreateNotApplibable(),
+                ModifierConfiguration.CreateNotApplicable(),
                 LockConfiguration.CreateNotApplicable());
 
             _receiverMock.Setup(f => f.ReceiveAsync(It.IsAny<KeyboardInput>())).Returns(Task.FromResult(true));
