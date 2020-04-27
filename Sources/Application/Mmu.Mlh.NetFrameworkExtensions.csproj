@@ -46,6 +46,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Abstractions, Version=11.0.0.0, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Abstractions.11.0.2\lib\net461\System.IO.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Dropbox\Services\IDropboxLocator.cs" />
+    <Compile Include="Areas\Dropbox\Services\Implementation\DropboxLocator.cs" />
     <Compile Include="Areas\Hooking\Common\Models\Configurations\IEventConfiguration.cs" />
     <Compile Include="Areas\Hooking\Common\Models\Inputs\IInput.cs" />
     <Compile Include="Areas\Hooking\Common\Factories\IInputFactory.cs" />
@@ -99,16 +104,16 @@
     <Compile Include="Areas\Hooking\MouseHooking\WindowsNative\Services\INativeMouseHookService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Infrastructure\DependencyInjection\NetFrameworkExtensionsRegistry.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Delegates\HookReceived.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Enums\HookType.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Delegates\HookReceived.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Enums\HookType.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\WindowsNative\Services\INativeKeyboardHookService.cs" />
     <Compile Include="Areas\Hooking\KeyboardHooking\WindowsNative\Services\Implementation\NativeKeyboardHookService.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Imports\NativeMethods.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Delegates\HookProc.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Services\Servants\Implementation\InvokeActionServant.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Services\IHookService.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Services\Implementation\HookService.cs" />
-    <Compile Include="Infrastructure\WindowsNative\Services\Servants\Implementation\MySafeHandle.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Imports\NativeMethods.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Delegates\HookProc.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Services\Servants\Implementation\InvokeActionServant.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Services\IHookService.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Services\Implementation\HookService.cs" />
+    <Compile Include="Areas\Hooking\WindowsNative\Services\Servants\Implementation\MySafeHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

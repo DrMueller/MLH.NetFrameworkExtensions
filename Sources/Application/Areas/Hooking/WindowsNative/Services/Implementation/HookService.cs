@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Delegates;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Enums;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Imports;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.Servants.Implementation;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Delegates;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Enums;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Imports;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services.Servants.Implementation;
 
-namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.Implementation
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services.Implementation
 {
     [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by StructureMap")]
     internal sealed class HookService : IHookService

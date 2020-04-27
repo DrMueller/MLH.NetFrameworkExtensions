@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Models;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Enums;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Enums;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Services.Implementation
 {

@@ -1,4 +1,4 @@
-﻿namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Enums
+﻿namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Enums
 {
     public enum HookType
     {

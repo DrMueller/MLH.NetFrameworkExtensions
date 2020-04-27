@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.Servants.Implementation
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services.Servants.Implementation
 {
     internal static class InvokeActionServant
     {

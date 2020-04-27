@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Delegates;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Delegates;
 
-namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Imports
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Imports
 {
     internal static class NativeMethods
     {

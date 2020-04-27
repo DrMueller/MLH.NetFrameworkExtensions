@@ -2,7 +2,7 @@
 using System.Runtime.ConstrainedExecution;
 using Microsoft.Win32.SafeHandles;
 
-namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.Servants.Implementation
+namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services.Servants.Implementation
 {
     internal class MySafeHandle : SafeHandleZeroOrMinusOneIsInvalid
     {

@@ -2,8 +2,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNative.Models;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Enums;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Enums;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.WindowsNative.Services.Implementation
 {

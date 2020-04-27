@@ -1,4 +1,6 @@
-﻿using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.Common.Services;
+﻿using System.IO.Abstractions;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Dropbox.Services;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Dropbox.Services.Implementation;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Implementation;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants;
@@ -13,8 +15,8 @@ using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Services;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Services.Implementation;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Services;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.WindowsNative.Services.Implementation;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services;
-using Mmu.Mlh.NetFrameworkExtensions.Infrastructure.WindowsNative.Services.Implementation;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services;
+using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.WindowsNative.Services.Implementation;
 using StructureMap;
 
 namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
@@ -44,8 +46,14 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
             For<IMouseHookService>().Use<MouseHookService>().Transient();
             For<IMouseInputFactory>().Use<MouseInputFactory>().Singleton();
 
-            // Infrastructure - WindowsNative
+            // Hooking - WindowsNative
             For<IHookService>().Use<HookService>().AlwaysUnique();
+
+            // Dropbox - Locator
+            For<IDropboxLocator>().Use<DropboxLocator>().Singleton();
+
+            // Infrastructure
+            For<IFileSystem>().Use<FileSystem>().Singleton();
         }
     }
 }
