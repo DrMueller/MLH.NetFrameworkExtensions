@@ -58,8 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Dropbox\Services\IDropboxLocator.cs" />
-    <Compile Include="Areas\Dropbox\Services\Implementation\DropboxLocator.cs" />
     <Compile Include="Areas\Hooking\Common\Models\Configurations\IEventConfiguration.cs" />
     <Compile Include="Areas\Hooking\Common\Models\Inputs\IInput.cs" />
     <Compile Include="Areas\Hooking\Common\Factories\IInputFactory.cs" />

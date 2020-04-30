@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Services;
 using Mmu.Mlh.ApplicationExtensions.Areas.ServiceProvisioning;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Dropbox.Services;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Services;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.MouseHooking.Domain.Services;
 
@@ -18,10 +17,6 @@ namespace Mmu.Mlh.NetFrameworkExtensions.TestConsole
                 ContainerInitializationService.CreateInitializedContainer(new AssemblyParameters(typeof(Program).Assembly, "Mmu.Mlh"))
                     .GetInstance<IProvisioningService>();
 
-            var dropboxLocator = provisioningService.GetService<IDropboxLocator>();
-            var dropboxPath = dropboxLocator.LocateDropboxPath();
-            Console.WriteLine(dropboxPath);
-            
             var keyboardHookService = provisioningService.GetService<IKeyboardHookService>();
             var mouseHookService = provisioningService.GetService<IMouseHookService>();
 

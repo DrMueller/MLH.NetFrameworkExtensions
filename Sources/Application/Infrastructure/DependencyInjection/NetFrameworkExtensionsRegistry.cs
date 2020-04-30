@@ -1,6 +1,4 @@
 ﻿using System.IO.Abstractions;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Dropbox.Services;
-using Mmu.Mlh.NetFrameworkExtensions.Areas.Dropbox.Services.Implementation;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Implementation;
 using Mmu.Mlh.NetFrameworkExtensions.Areas.Hooking.KeyboardHooking.Domain.Factories.Servants;
@@ -48,9 +46,6 @@ namespace Mmu.Mlh.NetFrameworkExtensions.Infrastructure.DependencyInjection
 
             // Hooking - WindowsNative
             For<IHookService>().Use<HookService>().AlwaysUnique();
-
-            // Dropbox - Locator
-            For<IDropboxLocator>().Use<DropboxLocator>().Singleton();
 
             // Infrastructure
             For<IFileSystem>().Use<FileSystem>().Singleton();
